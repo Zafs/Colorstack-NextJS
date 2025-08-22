@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    
+    <!-- Primary Meta Tags -->
+    <title>ColorStack – Color-layered 3D printing generator</title>
+    <meta name="title" content="ColorStack – Color-layered 3D printing generator">
+    <meta name="description" content="Turn any image into a multi-color 3D print with this free, browser-based tool. The best alternative to HueForge for creating stunning color-layered STL files.">
+    <meta name="keywords" content="3D printing, color printing, STL files, HueForge alternative, multi-color prints, 3D modeling, color layers, filament colors, 3D print design, free 3D printing tool, browser-based 3D modeling, image to STL converter">
+    <meta name="author" content="ColorStack">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <meta name="coverage" content="worldwide">
+    <meta name="target" content="all">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#6366F1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#6366F1" media="(prefers-color-scheme: dark)">
+    
+    <!-- Security Meta Tags -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="/">
+    <meta property="og:title" content="ColorStack - Free HueForge Alternative for Color-Layered 3D Printing">
+    <meta property="og:description" content="Transform any image into beautiful multi-color 3D prints with ColorStack. Free, browser-based tool for creating color-layered STL files.">
+    <meta property="og:image" content="/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ColorStack - Free 3D printing tool for color-layered models">
+    <meta property="og:site_name" content="ColorStack">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:determiner" content="the">
+    <meta property="og:audio" content="">
+    <meta property="og:video" content="">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@colorstack_app">
+    <meta property="twitter:creator" content="@colorstack_app">
+    <meta property="twitter:url" content="/">
+    <meta property="twitter:title" content="ColorStack - Free HueForge Alternative for Color-Layered 3D Printing">
+    <meta property="twitter:description" content="Transform any image into beautiful multi-color 3D prints with ColorStack. Free, browser-based tool for creating color-layered STL files.">
+    <meta property="twitter:image" content="/assets/images/og-image.png">
+    <meta property="twitter:image:alt" content="ColorStack - Free 3D printing tool for color-layered models">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#6366F1">
+    <meta name="msapplication-TileColor" content="#6366F1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ColorStack">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="/">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap&amp;v=2.1.6" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&amp;v=2.1.6" rel="stylesheet"/>
+    
+
+    
+    <!-- Vercel Analytics - Handled by React component in production -->
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ColorStack - Free HueForge Alternative",
+      "description": "Transform any image into a multi-color 3D print with this free, browser-based tool. The best alternative to HueForge for creating stunning color-layered STL files.",
+      "url": "https://colorstack.app/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "88"
+      },
+      "screenshot": "https://colorstack.app/assets/images/screenshot-wide.png",
+      "softwareVersion": "2.1.6"
+    }
+    </script>
+<style type="text/tailwindcss">
+        /* Base styles with fallbacks */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #0A0A0A;
+            color: #E0E0E0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        
+        /* Fallback for browsers that don't support CSS Grid */
+        .grid-fallback {
+            display: block;
+        }
+        
+        @supports (display: grid) {
+            .grid-fallback {
+                display: grid;
+            }
+        }
+        
+        .card {
+            background-color: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: #6366F1;
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 12px 24px;
+            -webkit-transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4F46E5;
+        }
+        
+        .btn-primary:active {
+            background-color: #4338CA;
+        }
+        
+        .btn-secondary {
+            background-color: #333333;
+            color: #E0E0E0;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 8px 16px;
+            border: 1px solid #444444;
+            -webkit-transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #444444;
+        }
+        
+        .btn-secondary:active {
+            background-color: #555555;
+        }
+        
+        .input-group label {
+            color: #9E9E9E;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .input-field {
+            background-color: #222222;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            color: #E0E0E0;
+            padding: 10px 12px;
+            width: 100%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-size: 14px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #6366F1;
+            -webkit-box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        /* Enhanced slider styles with better cross-browser support */
+        input[type="range"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: #444444;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #444444;
+            border-radius: 2px;
+            border: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #6366F1;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #E0E0E0;
+            -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #444444;
+            border-radius: 2px;
+            border: none;
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #6366F1;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #E0E0E0;
+            -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Hide number input spinners */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        
+        /* Upload area styles with better touch support */
+        .upload-area {
+            background-color: #1A1A1A;
+            border: 2px dashed #444444;
+            border-radius: 8px;
+            color: #E0E0E0;
+            padding: 10px 12px;
+            width: 100%;
+            aspect-ratio: 1;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            cursor: pointer;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .upload-area:hover {
+            border-color: #6366F1;
+            background-color: #222222;
+            -webkit-transform: scale(1.02);
+            -ms-transform: scale(1.02);
+            transform: scale(1.02);
+        }
+        
+        .upload-area.dragover {
+            border-color: #6366F1;
+            background-color: #222222;
+            -webkit-transform: scale(1.05);
+            -ms-transform: scale(1.05);
+            transform: scale(1.05);
+        }
+        
+        /* Hidden file input */
+        .file-input {
+            display: none;
+        }
+        
+        /* Canvas containers with better mobile support */
+        .canvas-container {
+            aspect-ratio: 1;
+            background-color: #222222;
+            border-radius: 8px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .canvas-container canvas {
+            max-width: 100%;
+            max-height: 100%;
+            -o-object-fit: contain;
+            object-fit: contain;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Modal styles with better mobile support */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 16px;
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal-content {
+            background-color: #1A1A1A;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Spinner styles */
+        .spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+            display: none;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+        
+        .spinner-content {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #444444;
+            border-top: 4px solid #6366F1;
+            border-radius: 50%;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+        
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Main app container */
+        .main-app {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        
+        /* Responsive design improvements */
+        @media (max-width: 768px) {
+            .main-app {
+                padding: 8px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                margin: 16px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-app {
+                padding: 4px;
+            }
+            
+            .modal-content {
+                padding: 16px;
+                margin: 8px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+        
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn-primary, .btn-secondary {
+                min-height: 44px;
+            }
+            
+            input[type="range"]::-webkit-slider-thumb {
+                width: 20px;
+                height: 20px;
+            }
+            
+            input[type="range"]::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .card {
+                border-width: 2px;
+            }
+            
+            .btn-primary {
+                border: 2px solid #ffffff;
+            }
+            
+            .btn-secondary {
+                border-width: 2px;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .btn-primary, .btn-secondary, .upload-area {
+                -webkit-transition: none;
+                transition: none;
+            }
+            
+            .spinner-content {
+                -webkit-animation: none;
+                animation: none;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #0A0A0A;
+                color: #E0E0E0;
+            }
+        }
+        
+        /* Light mode fallback */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #0A0A0A;
+                color: #E0E0E0;
+            }
+        }
+        
+        /* Tooltip styles with better accessibility */
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            z-index: 50;
+            background-color: #1f2937;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            -webkit-transition: opacity 0.2s ease;
+            transition: opacity 0.2s ease;
+        }
+        
+        .has-tooltip:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Focus styles for better accessibility */
+        .btn-primary:focus,
+        .btn-secondary:focus,
+        .input-field:focus {
+            outline: 2px solid #6366F1;
+            outline-offset: 2px;
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #6366F1;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* SortableJS drag-and-drop styles */
+        .sortable-ghost {
+            opacity: 0.5;
+            background-color: #2A2A2A !important;
+        }
+        
+        .sortable-chosen {
+            background-color: #6366F1 !important;
+            transform: scale(1.05);
+            z-index: 1000;
+        }
+        
+        .sortable-drag {
+            opacity: 0.8;
+            transform: rotate(5deg);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 lg:p-8">
+<!-- Skip link for accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Spinner -->
+<div id="spinner" class="spinner">
+    <div class="spinner-content"></div>
+</div>
+
+<!-- Hidden File Input -->
+<input type="file" id="fileInput" accept="image/png,image/jpeg,image/bmp" class="file-input" max="10485760" />
+
+<!-- Main App Container -->
+<div id="app" class="main-app">
+<div class="max-w-7xl mx-auto">
+<header class="flex justify-between items-center mb-8">
+<img src="Logo.svg" alt="ColorStack" class="h-7 md:h-10" />
+<div class="flex items-center gap-1 md:gap-4">
+<div class="relative has-tooltip">
+<button id="instructionsBtn" class="btn-secondary flex items-center gap-2 p-2 md:px-4 md:py-2">
+<span class="material-icons">info_outline</span>
+<span class="hidden md:inline">View Slicer Instructions</span>
+</button>
+<div class="tooltip -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded">Learn how to configure your slicer</div>
+</div>
+<div class="relative has-tooltip">
+<button id="newImageBtn" class="btn-secondary flex items-center gap-2 p-2 md:px-4 md:py-2">
+<span class="material-icons">add_photo_alternate</span>
+<span class="hidden md:inline">New Image</span>
+</button>
+<div class="tooltip -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded">Upload a new image</div>
+</div>
+<div class="relative has-tooltip">
+<button id="exportBtn" class="btn-primary flex items-center gap-2 p-2 md:px-4 md:py-2">
+<span class="material-icons">file_download</span>
+<span class="hidden md:inline">Export STL</span>
+</button>
+<div class="tooltip -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap">Download the 3D model file</div>
+</div>
+</div>
+</header>
+
+<h1 class="sr-only">ColorStack: The Free, Browser-Based HueForge Alternative for Color 3D Printing</h1>
+
+<!-- Upload Area (shown when no image is loaded) -->
+<div id="uploadArea" class="mb-8">
+<main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="card p-6">
+<h2 class="text-lg font-semibold mb-4">Start with an Image</h2>
+<div class="upload-area" id="uploadCard">
+<div class="text-6xl text-gray-400 mb-4">↑</div>
+<div class="text-xl font-medium text-gray-300 mb-2">Upload Image</div>
+<div class="text-sm text-gray-500 mb-4">PNG, JPEG, or BMP files</div>
+<div class="text-xs text-gray-600">Drag and drop or click to browse</div>
+</div>
+</div>
+<div class="card p-6">
+<h2 class="text-lg font-semibold mb-4">How to Create Your 3D Model</h2>
+<div class="space-y-4 text-gray-300">
+<div class="flex items-start gap-3">
+<span class="material-icons text-indigo-400 mt-1">upload</span>
+<div>
+<h3 class="font-medium text-white">Upload Your Image</h3>
+<p class="text-sm text-gray-400">Click the upload area or drag and drop an image file to get started.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-icons text-indigo-400 mt-1">palette</span>
+<div>
+<h3 class="font-medium text-white">Color Processing</h3>
+<p class="text-sm text-gray-400">ColorStack will automatically detect colors and create a palette for your 3D print.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-icons text-indigo-400 mt-1">3d_rotation</span>
+<div>
+<h3 class="font-medium text-white">Export STL</h3>
+<p class="text-sm text-gray-400">Generate a multi-color STL file ready for your 3D printer.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="flex flex-col gap-6">
+<div class="card p-6">
+<h2 class="text-lg font-semibold mb-4">Compatible Image Formats</h2>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<span class="material-icons text-green-400">check_circle</span>
+<span class="text-gray-300">PNG files</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-icons text-green-400">check_circle</span>
+<span class="text-gray-300">JPEG files</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-icons text-green-400">check_circle</span>
+<span class="text-gray-300">BMP files</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-icons text-blue-400">info</span>
+<span class="text-gray-300">Max 10MB file size</span>
+</div>
+</div>
+</div>
+<div class="card p-6">
+<h2 class="text-lg font-semibold mb-4">Tips</h2>
+<div class="space-y-3 text-sm text-gray-300">
+<p>• Use high contrast images for best results</p>
+<p>• Simple designs work better than complex photos</p>
+<p>• Avoid images with too many similar colors</p>
+<p>• Test with different color band settings</p>
+</div>
+</div>
+</aside>
+</main>
+</div>
+
+<!-- Main Content (hidden when no image is loaded) -->
+<div id="mainContent" class="hidden">
+<main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="card p-6">
+<h2 class="text-lg font-semibold mb-4">Original Image</h2>
+<div class="canvas-container">
+<canvas id="origCanvas" class="rounded-lg object-cover w-full h-full"></canvas>
+</div>
+</div>
+<div class="card p-6 relative">
+<h2 class="text-lg font-semibold mb-4">Processed Preview</h2>
+<div class="canvas-container">
+<canvas id="procCanvas" class="rounded-lg object-cover w-full h-full"></canvas>
+<div class="absolute top-2 right-2 px-3 py-1.5 bg-indigo-600 bg-opacity-90 border border-indigo-500 rounded-lg text-xs text-white font-medium shadow-lg">
+<span id="dimension-display-x">150.0</span> mm × <span id="dimension-display-y">120.0</span> mm
+</div>
+</div>
+</div>
+</div>
+<div class="card p-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Layer Preview</h2>
+<span class="text-sm text-gray-400">Layer <span id="layerValue">1</span> / <span id="maxLayers">4</span></span>
+</div>
+<div class="relative has-tooltip flex items-center gap-4">
+<span class="material-icons text-gray-400">layers</span>
+<input id="layerSlider" class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider-track" max="4" min="1" type="range" value="1"/>
+<div class="tooltip -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded">Scrub through layers</div>
+</div>
+</div>
+</div>
+<aside class="flex flex-col gap-6">
+<div class="card p-6">
+<h2 class="text-lg font-semibold mb-4">Primary Controls</h2>
+<div class="space-y-6">
+<div class="input-group">
+<div class="flex justify-between items-center">
+<label for="numBands">Z-Bands (Colors)</label>
+<div class="relative has-tooltip">
+<span class="material-icons text-gray-400 text-base cursor-help">help_outline</span>
+<div class="tooltip -top-8 right-0 px-2 py-1 bg-gray-900 text-white text-xs rounded w-40">Number of color layers in the final model.</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<input id="numBands" class="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer slider-track" max="8" min="2" type="range" value="4"/>
+<span id="numBandsValue" class="font-semibold text-white">4</span>
+</div>
+</div>
+<div>
+<h3 class="text-base font-medium text-gray-300 mb-3">Layer Parameters</h3>
+<div class="grid grid-cols-3 gap-3">
+<div class="relative has-tooltip">
+<label class="text-xs text-gray-400 block mb-1" for="layerHeight">Layer Height</label>
+            <input id="layerHeight" class="input-field text-sm p-2 text-center" type="number" min="0.1" max="10" step="0.1" value="0.2"/>
+<div class="tooltip -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded">Height of each layer</div>
+</div>
+<div class="relative has-tooltip">
+<label class="text-xs text-gray-400 block mb-1" for="baseThickness">Base Thick.</label>
+            <input id="baseThickness" class="input-field text-sm p-2 text-center" type="number" min="0.1" max="50" step="0.1" value="3"/>
+<div class="tooltip -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap">Base thickness</div>
+</div>
+<div class="relative has-tooltip">
+<label class="text-xs text-gray-400 block mb-1" for="bandThickness">Band Thick.</label>
+            <input id="bandThickness" class="input-field text-sm p-2 text-center" type="number" min="0.1" max="50" step="0.1" value="2"/>
+<div class="tooltip -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap">Color band thickness</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-base font-medium text-gray-300 mb-3">Model Dimensions</h3>
+<div class="flex items-end gap-3">
+<div class="flex-1 relative has-tooltip">
+<label class="text-xs text-gray-400 block mb-1" for="xSize">X Size</label>
+            <input id="xSize" class="input-field text-sm p-2 text-center" type="number" min="10" max="500" step="1" value="150"/>
+<div class="tooltip -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded">Width of the model</div>
+</div>
+<div class="flex-shrink-0 relative has-tooltip">
+<button id="aspectRatioLockBtn" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white rounded-lg transition-colors duration-200 border border-gray-600 hover:border-gray-500">
+<span class="material-icons text-lg">link</span>
+</button>
+<div class="tooltip -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap">Toggle aspect ratio lock</div>
+</div>
+<div class="flex-1 relative has-tooltip">
+<label class="text-xs text-gray-400 block mb-1" for="ySize">Y Size</label>
+            <input id="ySize" class="input-field text-sm p-2 text-center" type="number" min="10" max="500" step="1" value="120"/>
+<div class="tooltip -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded">Depth of the model</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card p-6">
+<h2 class="text-lg font-semibold mb-4">Color Palette</h2>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center bg-gray-800 p-1 rounded-lg">
+<button id="suggestedPaletteBtn" class="px-3 py-1 text-sm font-medium rounded-md bg-indigo-600 text-white">Suggested</button>
+<button id="myPaletteBtn" class="px-3 py-1 text-sm font-medium rounded-md text-gray-300 hover:bg-gray-700">My Palette</button>
+</div>
+<div class="relative has-tooltip">
+<button id="invertPaletteBtn" class="p-2 rounded-full hover:bg-gray-700">
+<span class="material-icons text-gray-400">swap_vert</span>
+</button>
+<div class="tooltip -top-8 right-0 px-2 py-1 bg-gray-900 text-white text-xs rounded">Reverse color order</div>
+</div>
+</div>
+<div id="palette" class="grid grid-cols-8 gap-2">
+<!-- Palette colors will be dynamically generated here -->
+</div>
+<p class="text-xs text-gray-400 mt-2">Drag to reorder layers (Z-Bands).</p>
+</div>
+<div class="card p-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">My Filaments</h2>
+<div class="relative has-tooltip">
+<button id="addFilamentBtn" class="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 text-sm">
+<span class="material-icons text-lg">add_circle_outline</span>
+                        Add New
+                    </button>
+<div class="tooltip -top-8 right-0 px-2 py-1 bg-gray-900 text-white text-xs rounded">Add a new filament</div>
+</div>
+</div>
+<div id="myFilamentsList" class="grid grid-cols-3 sm:grid-cols-4 gap-4">
+<!-- My filaments will be dynamically generated here -->
+</div>
+</div>
+</aside>
+</main>
+</div>
+</div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+<div id="modalContent" class="modal-content">
+<h2 id="modalTitle" class="text-2xl font-bold text-white text-center mb-6"></h2>
+<div id="modalBody" class="space-y-4"></div>
+<button id="modalCloseBtn" class="w-full mt-8 px-4 py-3 bg-gray-600 text-gray-200 font-medium rounded-lg transition-all hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">Close</button>
+</div>
+</div>
+
+<!-- Feedback Button -->
+<a href="https://tally.so/r/3xW4ZG" target="_blank" rel="noopener noreferrer" class="fixed bottom-32 left-6 z-50 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white px-4 py-3 rounded-lg shadow-lg transition-all duration-300 flex items-center gap-2 border border-gray-700 hover:border-gray-600">
+    <span class="material-icons text-lg">feedback</span>
+    <span class="text-sm font-medium">Feedback</span>
+</a>
+
+<!-- Footer -->
+<footer class="mt-16 py-8 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-gray-400 text-sm">
+                © 2025 ColorStack. Free browser-based tool for color-layered 3D printing.
+            </div>
+                                <div class="flex items-center gap-6">
+                        <a href="/privacy" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2">
+                            <span class="material-icons text-lg">privacy_tip</span>
+                            <span class="text-sm font-medium">Privacy Policy</span>
+                        </a>
+                        <a href="/terms" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2">
+                            <span class="material-icons text-lg">description</span>
+                            <span class="text-sm font-medium">Terms of Service</span>
+                        </a>
+                        <a href="https://discord.gg/P4VyGBvzZS" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2">
+                            <span class="material-icons text-lg">chat</span>
+                            <span class="text-sm font-medium">Join our Discord</span>
+                        </a>
+                    </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Polyfill for older browsers -->
+<script>
+// Feature detection and polyfills
+(function() {
+    'use strict';
+    
+    // Check for ES6 module support
+    if (!window.Promise) {
+        // Load Promise polyfill if needed
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js';
+        document.head.appendChild(script);
+    }
+    
+    // Check for fetch support
+    if (!window.fetch) {
+        // Load fetch polyfill if needed
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.js';
+        document.head.appendChild(script);
+    }
+    
+    // Check for Canvas support
+    if (!window.CanvasRenderingContext2D) {
+        console.warn('Canvas not supported in this browser');
+    }
+    
+    // Check for File API support
+    if (!window.FileReader) {
+        console.warn('File API not supported in this browser');
+    }
+    
+    // Check for Blob support
+    if (!window.Blob) {
+        console.warn('Blob API not supported in this browser');
+    }
+    
+    // Add touch event support for mobile devices
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+    }
+    
+    // Add reduced motion support
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.body.classList.add('reduced-motion');
+    }
+    
+    // Add high contrast mode support
+    if (window.matchMedia && window.matchMedia('(prefers-contrast: high)').matches) {
+        document.body.classList.add('high-contrast');
+    }
+    
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js?v=2.1.6')
+                .then(function(registration) {
+                    console.log('Service Worker registered successfully:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.error('Service Worker registration failed:', error);
+                });
+        });
+    }
+})();
+</script>
+
+        <script src="js/version.js?v=2.1.6"></script>
+        <script src="js/main.js?v=2.1.6"></script>
+</body>
+</html>
