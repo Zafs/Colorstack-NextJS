@@ -14,7 +14,6 @@ const LayerPreview: React.FC<LayerPreviewProps> = ({
 }) => {
   const layerSliderRef = useRef<HTMLInputElement>(null);
   const singleLayerToggleRef = useRef<HTMLInputElement>(null);
-  const [debouncedLayer, setDebouncedLayer] = useState(currentLayer);
 
   // Update the maxLayers display when the prop changes
   useEffect(() => {
@@ -29,19 +28,7 @@ const LayerPreview: React.FC<LayerPreviewProps> = ({
     }
   }, [maxLayers]);
 
-  // Debounced effect for layer changes to reduce spammy image processing
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (window.appState && window.handleSettingsChange) {
-        window.appState.currentLayer = debouncedLayer;
-        window.handleSettingsChange();
-      }
-    }, 250);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [debouncedLayer]);
 
   useEffect(() => {
     // Set up event listeners for legacy JavaScript compatibility
@@ -57,8 +44,11 @@ const LayerPreview: React.FC<LayerPreviewProps> = ({
             layerValueElement.textContent = newLayer.toString();
           }
           
-          // Update the debounced layer state (this will trigger the debounced effect)
-          setDebouncedLayer(newLayer);
+          // Trigger legacy update immediately
+          if (window.appState && window.handleSettingsChange) {
+            window.appState.currentLayer = newLayer;
+            window.handleSettingsChange();
+          }
         });
       }
 
