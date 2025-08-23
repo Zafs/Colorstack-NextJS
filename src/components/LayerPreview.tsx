@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface LayerPreviewProps {
   currentLayer?: number;
@@ -12,6 +12,10 @@ const LayerPreview: React.FC<LayerPreviewProps> = ({
   currentLayer = 1,
   maxLayers = 4
 }) => {
+  const layerSliderRef = useRef<HTMLInputElement>(null);
+  const singleLayerToggleRef = useRef<HTMLInputElement>(null);
+  const [debouncedLayer, setDebouncedLayer] = useState(currentLayer);
+
   // Update the maxLayers display when the prop changes
   useEffect(() => {
     const maxLayersElement = document.getElementById('maxLayers');
@@ -24,8 +28,20 @@ const LayerPreview: React.FC<LayerPreviewProps> = ({
       layerSliderRef.current.max = (maxLayers - 1).toString();
     }
   }, [maxLayers]);
-  const layerSliderRef = useRef<HTMLInputElement>(null);
-  const singleLayerToggleRef = useRef<HTMLInputElement>(null);
+
+  // Debounced effect for layer changes to reduce spammy image processing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.appState && window.handleSettingsChange) {
+        window.appState.currentLayer = debouncedLayer;
+        window.handleSettingsChange();
+      }
+    }, 250);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [debouncedLayer]);
 
   useEffect(() => {
     // Set up event listeners for legacy JavaScript compatibility
@@ -33,18 +49,16 @@ const LayerPreview: React.FC<LayerPreviewProps> = ({
       if (layerSliderRef.current) {
         layerSliderRef.current.addEventListener('input', (e) => {
           const value = parseInt((e.target as HTMLInputElement).value);
-          // Update the layer value display
+          const newLayer = value + 1;
+          
+          // Update the layer value display immediately for responsive UI
           const layerValueElement = document.getElementById('layerValue');
           if (layerValueElement) {
-            layerValueElement.textContent = (value + 1).toString();
+            layerValueElement.textContent = newLayer.toString();
           }
-          // Trigger legacy update
-          if (window.appState) {
-            window.appState.currentLayer = value + 1;
-            if (window.handleSettingsChange) {
-              window.handleSettingsChange();
-            }
-          }
+          
+          // Update the debounced layer state (this will trigger the debounced effect)
+          setDebouncedLayer(newLayer);
         });
       }
 
